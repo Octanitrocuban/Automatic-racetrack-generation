@@ -26,7 +26,7 @@ There are three method to create racetrack that will have differents poperty:
  other two methods. They will also include long straight lines. Finally
  there are (depending to the noise level add by the user) low risk for
  them to have artifact.
- ![Exemple picture](illustration.png "Exemple of racetrack produced with this function")
+ ![Exemple picture](RacetrackCircle.png "Exemple of racetrack produced with this function")
 
  - MakeHullCircuit:
  These racetraks will be caracterises by 
