@@ -1,29 +1,30 @@
 # Automatic-racetrack-generation
 This is the first step of a general project on devlopping genetic algorithm to train neural network to drive a car.
 
-The python file countain the following functions:
+The code folder countain the following python files:
 
-- VectorialSmooth: Function to smooth an 1d numpy.array.
+- CircleMethod.py:
+    - MakeBroke_circleCircuit: Function to creat a random racetrack from a circle.
+ 
+- ConvexeMethod.py:
+    - JarvisWalk: Function to fin the convex envelope of the random cloud.
+    - ComplexIt: Function to break the line witch length is superior to mind.
+    - MakeHullCircuit: Function to create random racetrack from the convex envelope of a random	cloud of dots.
 
-- SmoothCircuit: Function to smooth the path of the road to remoove the angular cut.
+- ExplorationMethod.py:
+    - SelectCroix: Function to select 4 values on a 2d np.array with a specific structure.
+    - Polyg: Function to cut a polygon into a 2d np.array.
+    - Polygonize: Function to find the differents poylgons on a 2d np.array created by	groups of cells of same values.
+    - Exploration: Function to create the base of the racetrack.
+    - MakeExplorerCircuit: Function to create a random racetrack by the exploration of a np.ndarray of shape: Shape.
 
-- MakeBroke_circleCircuit: Function to creat a random racetrack from a circle.
+- generals.py:
+    - VectorialSmooth: Function to smooth an 1d numpy.array.
+    - SmoothCircuit: Function to smooth the path of the road to remoove the angular cut.
 
-- JarvisWalk: Function to fin the convex envelope of the random cloud.
+- construct.py:
+    Contruction file.
 
-- ComplexIt: Function to break the line witch length is superior to mind.
-
-- MakeHullCircuit: Function to create random racetrack from the convex envelope of a random	cloud of dots.
-
-- SelectCroix: Function to select 4 values on a 2d np.array with a specific structure.
-
-- Polyg: Function to cut a polygon into a 2d np.array.
-
-- Polygonize: Function to find the differents poylgons on a 2d np.array created by	groups of cells of same values.
-
-- Exploration: Function to create the base of the racetrack.
-
-- MakeExplorerCircuit: 
 
 There are three method to create racetrack that will have differents poperty:
  - MakeBroke_circleCircuit:
