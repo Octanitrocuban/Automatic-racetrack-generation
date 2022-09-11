@@ -15,6 +15,8 @@ The python file countain the following functions:
 
 - MakeHullCircuit: Function to create random racetrack from the convex envelope of a random	cloud of dots.
 
+- SelectCroix: Function to select 4 values on a 2d np.array with a specific structure.
+
 - Polyg: Function to cut a polygon into a 2d np.array.
 
 - Polygonize: Function to find the differents poylgons on a 2d np.array created by	groups of cells of same values.
