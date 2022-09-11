@@ -30,6 +30,7 @@ There are three method to create racetrack that will have differents poperty:
 
  - MakeHullCircuit:
  These racetraks will be caracterises by some turns
+ ![Exemple picture](RacetrackConvexe.png "Exemple of racetrack produced with this function")
  
  - MakeExplorerCircuit:
  These racetraks will be caracterises by many turns
