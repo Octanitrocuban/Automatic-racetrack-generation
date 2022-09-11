@@ -15,7 +15,7 @@ The python file countain the following functions:
 
 - MakeHullCircuit: Function to create random racetrack from the convex envelope of a random	cloud of dots.
 
-- Exploration: 
+- Exploration: Function to create the base of the racetrack.
 
 - MakeExplorerCircuit: 
 
