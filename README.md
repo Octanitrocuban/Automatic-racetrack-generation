@@ -15,6 +15,10 @@ The python file countain the following functions:
 
 - MakeHullCircuit: Function to create random racetrack from the convex envelope of a random	cloud of dots.
 
+- Polyg: Function to cut a polygon into a 2d np.array.
+
+- Polygonize: Function to find the differents poylgons on a 2d np.array created by	groups of cells of same values.
+
 - Exploration: Function to create the base of the racetrack.
 
 - MakeExplorerCircuit: 
