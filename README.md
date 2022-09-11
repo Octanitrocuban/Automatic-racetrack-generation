@@ -33,14 +33,33 @@ There are three method to create racetrack that will have differents poperty:
       other two methods. They will also include long straight lines. Finally
       there are (depending to the noise level add by the user) low risk for
       them to have artifact.
-      ![Exemple picture](RacetrackCircle.png "Exemple of racetrack produced with this function")
+      
+      Here are exemples of racetracks produced with this function. The one
+      on the right have a small artifact at the center of the upper part.
+      ![Exemple picture](RacetrackCircle.png)
 
   - MakeHullCircuit:
-      These racetraks will be caracterises by some turns
-      ![Exemple picture](RacetrackConvexe.png "Exemple of racetrack produced with this function")
+      These racetraks will be caracterises by some turns. Most of them are
+      gentle and the other will bee quite sharp. They rarely have a long
+      straight line and most often have a general convex shape. This come
+      from there method of creation. These racetraks will also generally be
+      shorter than those constructed by "MakeBroke_circleCircuit". Finally,
+      there are (depending to the noise level add by the user) medium risk
+      for them to have artifact(s).
+      
+      Here are exemples of racetracks produced with this function. The one
+      on the right have a huge artifact at the right part.
+      ![Exemple picture](RacetrackConvexe.png)
  
   - MakeExplorerCircuit:
-      These racetraks will be caracterises by many turns
+      These racetraks will be caracterises by many turns and many small
+      straigth lines. They can have many very differents shape and length.
+      The racetraks constructed this way looks very little like those
+      produced by the other methods. There should not produce any artifact(s).
+      
+      Here are exemples of racetracks produced with this function. None of
+      them have any artifact, but we can see that the one at the right is
+      significantly smaller tha the one at the left.
       ![Exemple picture](RacetrackExploration.png "Exemple of racetrack produced with this function")
 
 
