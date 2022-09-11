@@ -29,10 +29,10 @@ There are three method to create racetrack that will have differents poperty:
  ![Exemple picture](RacetrackCircle.png "Exemple of racetrack produced with this function")
 
  - MakeHullCircuit:
- These racetraks will be caracterises by 
+ These racetraks will be caracterises by some turns
  
  - MakeExplorerCircuit:
- These racetraks will be caracterises by 
+ These racetraks will be caracterises by many turns
 
 
 
