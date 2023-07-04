@@ -9,57 +9,61 @@ random dots cloud.
 """
 
 import numpy as np
-from general import SmoothCircuit
+from general import SmoothCircuit, UniqueOrder
 #=============================================================================
 
-def JarvisWalk(Points):
+def JarvisWalk(points):
 	"""
-	Function to fin the convex envelope of the random cloud.
+	Function to find the convex envelope of a dot cloud. It uses scalar
+	product to find the correct angle.
+	\math{
+	   \theta = arccos(\fraf{x_{v1}*x_{v2}+y_{v1}*y_{v2}}{||v_1||*||v_2||})
+	   }
 
 	Parameters
 	----------
-	Points : np.ndarray
+	points : np.ndarray
 		A 2-dimensions numpy array. It countains the positions of the dots.
 
 	Returns
 	-------
-	cop : np.ndarray
+	sort : np.ndarray
 		A 2-dimensions numpy array. It countains the positions of the dots
 		forming the convexe envelope.
 
 	"""
-	E = [] ; cop = [] ; nd = len(Points) ; step = 0
-	E.append(list(Points[Points[:, 0] == np.min(Points[:, 0])][0]))
-	Stop=False ; verti = E[0][0]
-	while Stop != True:
-		angles = np.zeros(nd)
-		if len(E)== 1:
-			for i in range(len(Points)):
-				a = ((E[0][0]-verti)**2 +(E[0][1]-verti)**2)**0.5
-				b = ((Points[i, 0]-E[0][0])**2 +(Points[i, 1]-E[0][1])**2)**0.5
-				c = ((verti-Points[i, 0])**2 +(verti-Points[i, 1])**2)**0.5
-				gamma = np.rad2deg(np.arccos(-(c**2 -a**2 -b**2)/(2*a*b)))
-				angles[i] = 360-gamma
-			Px = np.nanargmin(angles)
-			E.append(list(Points[Px]))
-		else:
-			for i in range(len(Points)):
-				a = ((E[step][0]-E[step-1][0])**2 +
-					 (E[step][1]-E[step-1][1])**2)**0.5
-				b = ((Points[i, 0]-E[step][0])**2 +
-					 (Points[i, 1]-E[step][1])**2)**0.5
-				c = ((E[step-1][0]-Points[i, 0])**2 +
-					 (E[step-1][1]-Points[i, 1])**2)**0.5
-				gamma = np.rad2deg(np.arccos(-(c**2 -a**2 -b**2)/(2*a*b)))
-				angles[i] = 360-gamma
-			Px = np.arange(nd)[angles < 360]
-			Px = Px[np.nanargmin(angles[angles < 360])]
-			E.append(list(Points[Px]))
-		if E[step] in cop:
-			cop.append(E[step]) ; Stop = True
-		else:
-			cop.append(E[step]) ; step += 1
-	return cop
+	sort = []
+	starter = points[points[:, 0] == np.min(points[:, 0])][0]
+	# selects the "left most" => dot that has the lowest ordinate
+	sort.append(list(starter))
+	# u vector
+	u = np.array([0, 1])
+	current = np.copy(starter)
+	stop = False
+	# Safe stoping counter
+	c = 0
+	while stop != True:
+		v = points-current
+		prod_sca = v[:, 0]*u[0]+v[:, 1]*u[1]
+		norme_v = np.sum(v**2, axis=1)**.5
+		norme_u = (u[0]**2 + u[1]**2)**.5
+		angles = np.arccos(prod_sca/(norme_u*norme_v))
+		sort.append(list(points[np.nanargmin(angles)]))
+		u = v[np.nanargmin(angles)]
+		current = points[np.nanargmin(angles)]
+		c += 1
+		# Stop when the starter nod is once again reach
+		if np.sum(current == starter) == 2:
+			stop = True
+
+		# Safe stoping
+		if c > (len(points)+10):
+			print('')
+			print(points)
+			print('')
+			stop = True
+
+	return sort
 
 def ComplexIt(P, mind, divd=4):
 	"""
@@ -168,8 +172,8 @@ def MakeHullCircuit(Size, Nrand, Ninterp, mxcut, pccent, Ddiv, Ks, wid):
 			 Idn[i, 1]-lw1:Idn[i, 1]+lw2] = [.4, .4, .4]
 	Sear = np.argwhere(Road[:, :, 1] == .8)
 	for i in range(len(Sear)):
-		area = Road[Sear[i, 0]-lw1:Sear[i, 0]+lw2,
-					Sear[i, 1]-lw1:Sear[i, 1]+lw2]
+		area = Road[Sear[i, 0]-2:Sear[i, 0]+3, Sear[i, 1]-2:Sear[i, 1]+3]
 		if np.sum(area[:, :, 1] == .4):
 			Road[Sear[i, 0], Sear[i, 1]] = [.6, 0, 0]
-	return Road
+	Ulin = UniqueOrder(Idn)
+	return Road, Ulin
