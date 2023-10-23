@@ -40,8 +40,6 @@ def JarvisWalk(points):
 	u = np.array([0, 1])
 	current = np.copy(starter)
 	stop = False
-	# Safe stoping counter
-	c = 0
 	while stop != True:
 		v = points-current
 		prod_sca = v[:, 0]*u[0]+v[:, 1]*u[1]
@@ -51,16 +49,8 @@ def JarvisWalk(points):
 		sort.append(list(points[np.nanargmin(angles)]))
 		u = v[np.nanargmin(angles)]
 		current = points[np.nanargmin(angles)]
-		c += 1
 		# Stop when the starter nod is once again reach
 		if np.sum(current == starter) == 2:
-			stop = True
-
-		# Safe stoping
-		if c > (len(points)+10):
-			print('')
-			print(points)
-			print('')
 			stop = True
 
 	return sort
