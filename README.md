@@ -36,7 +36,7 @@ There are three method to create racetrack that will have differents poperty:
       
       Here are exemples of racetracks produced with this function. The one
       on the right have a small artifact at the center of the upper part.
-      ![Exemple picture](RacetrackCircle.png)
+      ![Exemple picture](img/RacetrackCircle.png)
 
   - MakeHullCircuit:
       These racetraks will be caracterises by some turns. Most of them are
@@ -49,7 +49,7 @@ There are three method to create racetrack that will have differents poperty:
       
       Here are exemples of racetracks produced with this function. The one
       on the right have a huge artifact at the right part.
-      ![Exemple picture](RacetrackConvexe.png)
+      ![Exemple picture](img/RacetrackConvexe.png)
  
   - MakeExplorerCircuit:
       These racetraks will be caracterises by many turns and many small
@@ -60,6 +60,6 @@ There are three method to create racetrack that will have differents poperty:
       Here are exemples of racetracks produced with this function. None of
       them have any artifact, but we can see that the one at the right is
       significantly smaller tha the one at the left.
-      ![Exemple picture](RacetrackExploration.png "Exemple of racetrack produced with this function")
+      ![Exemple picture](img/RacetrackExploration.png "Exemple of racetrack produced with this function")
 
 
