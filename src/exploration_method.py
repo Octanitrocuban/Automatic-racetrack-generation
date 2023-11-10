@@ -2,7 +2,7 @@
 """
 @author:  Matthieu Nougaret
 
-Tird method to create a random racetrak: it explore a 2d np.array, the
+Third method to create a random racetrak: it explore a 2d np.array, the
 convert it to the wrigth size and position.
 """
 
@@ -160,9 +160,9 @@ def polygonize(array):
 	while len(next_p) > 0:
 		next_p = np.array([next_p[0]])
 		first_ground = polyg_posi_vec_table(first_ground, next_p)
-		# Y == array will return a boolean 2d np.ndarray where the cells
-		# beeing equal to True mean that they were not explore yet by the
-		# polyg_posi_vec_table function.
+		# first_ground == array will return a boolean 2d np.ndarray where
+		# the cells beeing equal to True mean that they were not explore
+		# yet by the polyg_posi_vec_table function.
 		next_p = np.argwhere(first_ground == array)
 
 	return first_ground
@@ -216,7 +216,7 @@ def exploration(shape, init):
 			pol_ar[init[0]+1, init[1]+1] = 0
 			polyval = polygonize(pol_ar)
 			# since the map we want to tessel is filled with 0 and 1, the
-			# minimum will allways be between 1 and 2.
+			# minimum of polyval will allways be between 1 and 2.
 			if np.max(polyval) > 4:
 				# if the plate was cut in area, to take a path that will
 				# lead to the start and not end at an isolated position.
@@ -274,8 +274,8 @@ def make_explorer_circuit(shape, init, n_iter, kernel_size, width_map,
 	In [0] : make_explorer_circuit((6, 6), np.array([1, 1]), 100, 103, 250, 5)
 
 	"""
-	Road = exploration(shape, init)
-	course = smooth_circuit(Road, n_iter, kernel_size)
+	road = exploration(shape, init)
+	course = smooth_circuit(road, n_iter, kernel_size)
 	circuit = np.zeros((width_map, width_map))
 	course[: ,0] = course[: ,0]/shape[0] - np.min(course[: ,0]/shape[0])
 	course[:, 1] = course[:, 1]/shape[1] - np.min(course[:, 1]/shape[1])
@@ -289,8 +289,9 @@ def make_explorer_circuit(shape, init, n_iter, kernel_size, width_map,
 		lw1 = width_road//2 + 1
 		lw2 = width_road//2
 
-	for u in range(len(I)):
-		circuit[I[u, 0]-lw1:I[u, 0]+lw2, I[u, 1]-lw1:I[u, 1]+lw2] = 1
+	for u in range(len(course)):
+		circuit[course[u, 0]-lw1:course[u, 0]+lw2,
+			course[u, 1]-lw1:course[u, 1]+lw2] = 1
 
 	map_color = np.zeros((width_map, width_map, 3))
 	map_color[circuit == 0] = [0, 0.8, 0]
