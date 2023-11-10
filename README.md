@@ -47,7 +47,7 @@ There are three method to create racetrack that will have differents poperty:
       for them to have artifact(s).
       
       Here are exemples of racetracks produced with this function. The one
-      on the right have a huge artifact at the right part.
+      on the right have a huge artifact at the left part.
       ![Exemple picture](img/RacetrackConvexe.png)
  
   - make_explorer_circuit:
