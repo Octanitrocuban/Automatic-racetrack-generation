@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-@author: Matthieu Nougaret
-
 This script countain functions to create random racetrack.
 
 Sources / Bibliography:
