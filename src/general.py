@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-@author: Matthieu Nougaret
-
 General functions that are used by the three methods.
 """
 import numpy as np
