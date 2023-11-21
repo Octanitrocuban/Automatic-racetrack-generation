@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-@author: Matthieu Nougaret
-
 Second method to create a random racetrak: find the convexe envelope of a
 random dots cloud. I took inspiration from the blog post:
 https://www.gamedeveloper.com/programming/generating-procedural-racetracks
