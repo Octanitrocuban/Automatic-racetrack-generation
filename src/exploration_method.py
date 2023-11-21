@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-@author:  Matthieu Nougaret
-
 Third method to create a random racetrak: it explore a 2d np.array, the
 convert it to the wrigth size and position.
 """
