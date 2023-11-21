@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-@author: Matthieu Nougaret
-
 First method to create a random racetrak: break a cicle into curves.
 """
 
