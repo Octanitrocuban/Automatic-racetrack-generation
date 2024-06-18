@@ -76,13 +76,16 @@ def polyg_posi_vec_table(array, start_posi):
 		# stored position are used to fill the cell
 		repre_map[posi[:, 0], posi[:, 1]] = vfil
 		# select neigboor cells
-		posi = np.array([[posi[:, 0]-1, posi[:, 1]  ],
-						 [posi[:, 0]+1, posi[:, 1]  ],
-						 [posi[:, 0]  , posi[:, 1]-1],
-						 [posi[:, 0]  , posi[:, 1]+1]])
+		posi_next = np.array([[posi[:, 0]-1, posi[:, 1]  ],
+							  [posi[:, 0]+1, posi[:, 1]  ],
+							  [posi[:, 0]  , posi[:, 1]-1],
+							  [posi[:, 0]  , posi[:, 1]+1]])
 
 		# reshape them
-		posi = np.concatenate(posi, axis=1).T
+		posi = np.empty((4*posi_next.shape[2], 2), dtype=int)
+		posi[:, 0] = np.ravel(posi_next[:, 0, :])
+		posi[:, 1] = np.ravel(posi_next[:, 1, :])
+
 		# to avoid exponentional repetition
 		# to keep only existing cell
 		posi = posi[(posi[:, 0] >= 0)&(posi[:, 1] >= 0)&(
@@ -214,7 +217,7 @@ def exploration(shape, init):
 			pol_ar[init[0]+1, init[1]+1] = 0
 			polyval = polygonize(pol_ar)
 			# since the map we want to tessel is filled with 0 and 1, the
-			# minimum of polyval will allways be between 1 and 2.
+			# minimum will allways be between 1 and 2.
 			if np.max(polyval) > 4:
 				# if the plate was cut in area, to take a path that will
 				# lead to the start and not end at an isolated position.
@@ -289,7 +292,7 @@ def make_explorer_circuit(shape, init, n_iter, kernel_size, width_map,
 
 	for u in range(len(course)):
 		circuit[course[u, 0]-lw1:course[u, 0]+lw2,
-			course[u, 1]-lw1:course[u, 1]+lw2] = 1
+				course[u, 1]-lw1:course[u, 1]+lw2] = 1
 
 	map_color = np.zeros((width_map, width_map, 3))
 	map_color[circuit == 0] = [0, 0.8, 0]
